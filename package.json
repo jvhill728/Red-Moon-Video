@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon app.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "db:build": "node ./db/init_db.ts"
+
   },
   "keywords": [],
   "author": "",
