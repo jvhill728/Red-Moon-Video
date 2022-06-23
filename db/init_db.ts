@@ -1,3 +1,5 @@
+import { drop } from "cypress/types/lodash";
+
 const  { client } = require('./client');
 
 async function dropTables() {
@@ -52,3 +54,18 @@ async function createTables() {
         throw error;
     }
 }
+
+
+async function rebuildDB() {
+    try {
+        client.connect();
+        await dropTables();
+    } catch (error) {
+        console.log('Error during rebuildDB!')
+        throw error;
+    }
+}
+
+module.exports = {
+    rebuildDB
+};
