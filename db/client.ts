@@ -1,9 +1,9 @@
-const  Client = require('pg');
+const  { Client } = require('pg');
 
 const DB_NAME = 'Red-Moon-Video-dev';
 
 const client =
-   new Client(process.env.DATABASE_URL || `postgres:localhost:4000/${DB_NAME}`);
+   new Client(process.env.DATABASE_URL || `postgres://localhost:4000/${DB_NAME}`);
 
 // let client;
 
@@ -20,5 +20,8 @@ const client =
 // }
 
 
-module.exports = client;
+module.exports = { 
+   client
+}
+
 export {};
