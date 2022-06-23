@@ -1,3 +1,8 @@
-const models = require('./models');
 
-module.exports = models;
+const { client } = require('./client');
+
+module.exports = {
+    client
+};
+
+export{}

@@ -15,6 +15,8 @@ const morgan = require('morgan');
 app.use(morgan("dev"));
 app.use(express.json());
 
+const { client } = require('./db');
+
 // setting up server on localhost:4000
 app.listen(PORT, () => console.log(`Server is up on port ${PORT}`));
 
