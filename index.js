@@ -31,12 +31,12 @@ const { client } = require('./db');
 const handle = server.listen(PORT, async () => {
     console.log(`Server is up and running on port ${PORT}!`);
 
-    // try {
-    //     await client.connect();
-    //     console.log('Database is open for business!');
-    // } catch (error) {
-    //     throw error
-    // }
+    try {
+        await client.connect();
+        console.log('Database is open for business!');
+    } catch (error) {
+        throw error
+    }
 });
 
 
