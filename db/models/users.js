@@ -21,8 +21,36 @@ const createUser = async ({username, password, email}) => {
     }
 }
 
+const getAllUsers = async () => {
+    try {
+        console.log('Get into the TRY')
+        const { rows: users } = await client.query(`
+        SELECT *
+        FROM users
+        `)
+
+        // delete password
+        console.log('USER ===>', users)
+
+        const password = users.password;
+        if(password) {
+            delete password
+        }
+        console.log('These are our users', users)
+
+        return users
+    } catch (error) {
+        throw error
+    }
+}
+
+const getUser = async (username, password, email) => {
+    
+}
+
 
 
 module.exports = {
     createUser,
+    getAllUsers,
 }
