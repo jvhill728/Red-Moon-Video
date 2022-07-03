@@ -55,12 +55,35 @@ async function createTables() {
     }
 }
 
+const usersToCreate = [
+    { username: 'Jason', password: 'Crystallake', isAdmin: true},
+    { username: 'Michael', password: 'LaurieS', isAdmin: true},
+    { username: 'LeathFace', password: 'Screee', isAdmin: true},
+    { username: 'Freddy', password: 'DreamLord', isAdmin: true},
+]
+
+async function createInitialUsers() {
+    console.log('Starting to create users...');
+
+    try {
+        const users = await Promise.all(usersToCreate.map(createUser));
+
+        console.log('Users created:');
+        console.log(users);
+        console.log('Finished creating users!');
+    } catch (error) {
+        console.log('Error Creating Users!');
+        throw error;
+    }
+}
+
 
 async function rebuildDB() {
     try {
         client.connect();
         await dropTables();
         await createTables();
+        await createInitialUsers();
 
     } catch (error) {
         console.log('Error during rebuildDB!')
