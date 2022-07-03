@@ -1,5 +1,6 @@
 const { create } = require('cypress/types/lodash');
 const  client = require('./client');
+const { createUser, getUser, getUserByUsername } = require('./models/users');
 
 
 async function dropTables() {
