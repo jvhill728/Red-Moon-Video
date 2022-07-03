@@ -56,10 +56,10 @@ async function createTables() {
 }
 
 const usersToCreate = [
-    { username: 'Jason', password: 'Crystallake', isAdmin: true},
-    { username: 'Michael', password: 'LaurieS', isAdmin: true},
-    { username: 'LeathFace', password: 'Screee', isAdmin: true},
-    { username: 'Freddy', password: 'DreamLord', isAdmin: true},
+    { username: 'Jason', password: 'Crystallake', email: 'CampBlood69@gmail.com' },
+    { username: 'Michael', password: 'LaurieS', email: 'StabbyBoy79@gmail.com' },
+    { username: 'LeathFace', password: 'Screee', email: 'AllnFamilyTX@aol.com' },
+    { username: 'Freddy', password: 'DreamLord', email: 'DreamyFace1234@aol.com' },
 ]
 
 async function createInitialUsers() {
