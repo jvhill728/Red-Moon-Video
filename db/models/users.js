@@ -68,10 +68,38 @@ const getUser = async (username, password, email) => {
     }
 }
 
+const getUserById = async (id) => {
+    const { rows: [user] } = await client.query(`
+    SELECT * FROM users
+    WHERE id = $1`,
+    [id]
+    );
+
+    return user;
+}
+
+const getUserByUsername = async (username) => {
+    try {
+        console.log('username ===>', username)
+        const { rows: [user] } = await client.query(`
+        SELECT * FORM users
+        WHERE username = $1
+        `, [username]
+        );
+        console.log(user)
+        return user;
+
+    } catch (error) {
+        throw error
+    }
+}
+
 
 
 module.exports = {
     createUser,
-    getAllUsers,
+    getUserByUsername,
+    getUserById,
     getUser,
-}
+    getAllUsers
+};
