@@ -1,4 +1,5 @@
-const { client } = require('./client');
+const  client = require('./client');
+const { createUser, getUser, getUserByUsername } = require('./models/users');
 
 
 async function dropTables() {
@@ -54,16 +55,46 @@ async function createTables() {
     }
 }
 
+const usersToCreate = [
+    { username: 'Jason', password: 'Crystallake', email: 'CampBlood69@gmail.com' },
+    { username: 'Michael', password: 'LaurieS', email: 'StabbyBoy79@gmail.com' },
+    { username: 'LeathFace', password: 'Screee', email: 'AllnFamilyTX@aol.com' },
+    { username: 'Freddy', password: 'DreamLord', email: 'DreamyFace1234@aol.com' },
+]
+
+async function createInitialUsers() {
+    console.log('Starting to create users...');
+
+    try {
+        const users = await Promise.all(usersToCreate.map(createUser));
+
+        console.log('Users created:');
+        console.log(users);
+        console.log('Finished creating users!');
+    } catch (error) {
+        console.log('Error Creating Users!');
+        throw error;
+    }
+}
+
 
 async function rebuildDB() {
     try {
         client.connect();
         await dropTables();
+        await createTables();
+        await createInitialUsers();
+
     } catch (error) {
         console.log('Error during rebuildDB!')
         throw error;
     }
 }
+
+rebuildDB()
+    .then(populateInitialData)
+    .catch(console.error)
+    .finally(() => client.end());
 
 module.exports = {
     rebuildDB
