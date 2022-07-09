@@ -78,7 +78,9 @@ async function createInitialMovies() {
             { id:"1", title: "The Thing", releaseDate:"1982", genre:"horror, sci-fi", tags:["gory", "body horror", "80s", "aliens"]},
             { id:"2", title:"Halloween", releaseDate:"1979", genre:"horror", tags:["slasher", "70s", "final girl", "nudity"] },
             { id:"3", title:"A Nightmare on Elm Street", releaseDate:"1984", genre:"horror", tags:["gory", "80s", "final girl", "slasher"] },
-            { id:"4", title:"Night of the Creeps", releaseDate:"1986", genre:"horror", tags:["gory", "80s", "nudity", "camp", "satire", "aliens"] }
+            { id:"4", title:"Night of the Creeps", releaseDate:"1986", genre:"horror", tags:["gory", "80s", "nudity", "camp", "satire", "aliens"] },
+            { id:"4", title:"An American Werewolf in London", releaseDate:"1981", genre:"horror, comedy", tags:["gory", "80s", "creature feature", "nudidy"] },
+            { id:"5", title:"Evil Dead 2", releaseDate:"1987", genre:"horror, comedy", tags:["gory", "80s", "funny", "satire", "possession"] },
         ]
         const movies = await Promise.all(moviesToCreate.map(createMovie));
 
