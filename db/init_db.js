@@ -1,5 +1,6 @@
 const  client = require('./client');
 const { createUser, getUser, getUserByUsername } = require('./models/users');
+const { createMovie, getAllMovies, getMovieById } = require('./models/movies');
 
 
 async function dropTables() {
@@ -35,16 +36,8 @@ async function createTables() {
                 id SERIAL PRIMARY KEY,
                 title VARCHAR(255) UNIQUE NOT NULL,
                 "releaseDate" INTEGER,
-                genre VARCHAR(255) NOT NULL
-            );
-            CREATE TABLE tags (
-                id SERIAL PRIMARY KEY,
-                name VARCHAR(255) NOT NULL
-            );
-            CREATE TABLE movie_tags (
-                "movieId" INTEGER REFERENCES movies(id),
-                "tagId" INTEGER REFERENCES tags(id),
-                UNIQUE ("movieId", "tagId")
+                genre VARCHAR(255) NOT NULL,
+                tags VARCHAR(255) NOT NULL
             );
         `);
 
@@ -77,6 +70,31 @@ async function createInitialUsers() {
     }
 }
 
+async function createInitialMovies() {
+    try {
+        console.log('Starting to make some movies!');
+
+        const moviesToCreate = [
+            { id:"1", title: "The Thing", releaseDate:"1982", genre:"horror, sci-fi", tags:["gory", "body horror", "80s", "aliens"]},
+            { id:"2", title:"Halloween", releaseDate:"1979", genre:"horror", tags:["slasher", "70s", "final girl", "nudity"] },
+            { id:"3", title:"A Nightmare on Elm Street", releaseDate:"1984", genre:"horror", tags:["gory", "80s", "final girl", "slasher"] },
+            { id:"4", title:"Night of the Creeps", releaseDate:"1986", genre:"horror", tags:["gory", "80s", "nudity", "camp", "satire", "aliens"] },
+            { id:"4", title:"An American Werewolf in London", releaseDate:"1981", genre:"horror, comedy", tags:["gory", "80s", "creature feature", "nudidy"] },
+            { id:"5", title:"Evil Dead 2", releaseDate:"1987", genre:"horror, comedy", tags:["gory", "80s", "funny", "satire", "possession"] },
+        ]
+        const movies = await Promise.all(moviesToCreate.map(createMovie));
+
+        console.log('Movies created:');
+        console.log(movies);
+        console.log(movies[3].id);
+
+        console.log('Finished making the movies!');
+    } catch (error) {
+        console.log('Error making the movies!');
+        throw error;
+    }
+}
+
 
 async function rebuildDB() {
     try {
@@ -84,6 +102,7 @@ async function rebuildDB() {
         await dropTables();
         await createTables();
         await createInitialUsers();
+        await createInitialMovies();
 
     } catch (error) {
         console.log('Error during rebuildDB!')
@@ -92,7 +111,6 @@ async function rebuildDB() {
 }
 
 rebuildDB()
-    .then(populateInitialData)
     .catch(console.error)
     .finally(() => client.end());
 
