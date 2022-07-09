@@ -1,5 +1,6 @@
 const  client = require('./client');
 const { createUser, getUser, getUserByUsername } = require('./models/users');
+const { createMovie, getAllMovies, getMovieById } = require('./models/movies');
 
 
 async function dropTables() {
@@ -35,16 +36,8 @@ async function createTables() {
                 id SERIAL PRIMARY KEY,
                 title VARCHAR(255) UNIQUE NOT NULL,
                 "releaseDate" INTEGER,
-                genre VARCHAR(255) NOT NULL
-            );
-            CREATE TABLE tags (
-                id SERIAL PRIMARY KEY,
-                name VARCHAR(255) NOT NULL
-            );
-            CREATE TABLE movie_tags (
-                "movieId" INTEGER REFERENCES movies(id),
-                "tagId" INTEGER REFERENCES tags(id),
-                UNIQUE ("movieId", "tagId")
+                genre VARCHAR(255) NOT NULL,
+                tags VARCHAR(255) NOT NULL
             );
         `);
 
@@ -84,8 +77,8 @@ async function createInitialMovies() {
         const moviesToCreate = [
             { id:"1", title: "The Thing", releaseDate:"1982", genre:"horror, sci-fi", tags:["gory", "body horror", "80s", "aliens"]},
             { id:"2", title:"Halloween", releaseDate:"1979", genre:"horror", tags:["slasher", "70s", "final girl", "nudity"] },
-            { id:"3", title:"A Nightmare on Elm Street", releaseDate:"1984", tags:["gory", "80s", "final girl", "slasher"] },
-            { id:"4", title:"Night of the Creeps", releaseDate:"1986", tags:["gory", "80s", "nudity", "camp", "satire", "aliens"] }
+            { id:"3", title:"A Nightmare on Elm Street", releaseDate:"1984", genre:"horror", tags:["gory", "80s", "final girl", "slasher"] },
+            { id:"4", title:"Night of the Creeps", releaseDate:"1986", genre:"horror", tags:["gory", "80s", "nudity", "camp", "satire", "aliens"] }
         ]
         const movies = await Promise.all(moviesToCreate.map(createMovie));
 
