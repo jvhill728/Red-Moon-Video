@@ -19,3 +19,12 @@ usersRouter.get('/', async (req, res, next) => {
         next(error)
     }
 });
+
+usersRouter.post('/register', async (req, res, next) => {
+    try {
+        const { username, password } = req.body;
+        const newUser = await createUser({ username, passowrd });
+        const _user = await getUserByUsername(username);
+        
+    }
+})
