@@ -87,7 +87,7 @@ async function createInitialMovies() {
             { id:"3", title:"A Nightmare on Elm Street", releaseDate:"1984", tags:["gory", "80s", "final girl", "slasher"] },
             { id:"4", title:"Night of the Creeps", releaseDate:"1986", tags:["gory", "80s", "nudity", "camp", "satire", "aliens"] }
         ]
-        const movies = await Promise.all(moviesToCreate.map(createInitialMovies));
+        const movies = await Promise.all(moviesToCreate.map(createMovie));
 
         console.log('Movies created:');
         console.log(movies);
@@ -116,7 +116,6 @@ async function rebuildDB() {
 }
 
 rebuildDB()
-    .then(populateInitialData)
     .catch(console.error)
     .finally(() => client.end());
 
