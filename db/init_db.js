@@ -77,6 +77,29 @@ async function createInitialUsers() {
     }
 }
 
+async function createInitialMovies() {
+    try {
+        console.log('Starting to make some movies!');
+
+        const moviesToCreate = [
+            { id:"1", title: "The Thing", releaseDate:"1982", genre:"horror, sci-fi", tags:["gory", "body horror", "80s", "aliens"]},
+            { id:"2", title:"Halloween", releaseDate:"1979", genre:"horror", tags:["slasher", "70s", "final girl", "nudity"] },
+            { id:"3", title:"A Nightmare on Elm Street", releaseDate:"1984", tags:["gory", "80s", "final girl", "slasher"] },
+            { id:"4", title:"Night of the Creeps", releaseDate:"1986", tags:["gory", "80s", "nudity", "camp", "satire", "aliens"] }
+        ]
+        const movies = await Promise.all(moviesToCreate.map(createInitialMovies));
+
+        console.log('Movies created:');
+        console.log(movies);
+        console.log(movies[3].id);
+
+        console.log('Finished making the movies!');
+    } catch (error) {
+        console.log('Error making the movies!');
+        throw error;
+    }
+}
+
 
 async function rebuildDB() {
     try {
@@ -84,6 +107,7 @@ async function rebuildDB() {
         await dropTables();
         await createTables();
         await createInitialUsers();
+        await createInitialMovies();
 
     } catch (error) {
         console.log('Error during rebuildDB!')
