@@ -23,7 +23,21 @@ const App = () => {
     }, []);
 
     return (
-        <div className="app-container"></div>
+        <div className="app-container">
+            <div id="header">
+                <span>
+                    <h1 className="welcomeBanner">
+                        Welcome to Red Moon Video!
+                    </h1>
+                </span>
+            <div className="nav-bar"></div>
+
+
+
+        </div> 
+        </div>   
                   
     )
-}
+};
+
+export default App;
