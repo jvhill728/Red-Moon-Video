@@ -19,3 +19,41 @@ usersRouter.get('/', async (req, res, next) => {
         next(error)
     }
 });
+
+usersRouter.post('/register', async (req, res, next) => {
+    try {
+        const { username, password } = req.body;
+        const newUser = await createUser({ username, passowrd });
+        const _user = await getUserByUsername(username);
+        
+        if (_user === newUser) {
+            return next({
+                name: 'UserExistsError',
+                message: 'A user by that username already exists'
+            });
+        }
+        if (password.length < 8) {
+            return next({
+                name: 'PasswordTooShort',
+                message: 'Password length is less than 8 characters'
+            });
+        }
+
+        const token = jwt.sign({
+            id: newUser.id,
+            username
+        }, `${process.env.JWT_SECRET}`,
+        {expiresIn: '1week'});
+
+        return res.send({
+            user: newUser,
+            message: "You're signed up!",
+            token
+        })
+    } catch (error) {
+        return next(error);
+    }
+});
+
+
+module.exports = usersRouter;
