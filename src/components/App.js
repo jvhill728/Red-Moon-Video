@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {  Route, Switch, NavLink, Link } from 'react-router-dom';
 
+//Beginning App below, navbar component needed
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
