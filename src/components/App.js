@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react';
 import Home from './Home';
+import NavBar from './NavBar';
 
 
 //Beginning App below, navbar component needed
@@ -27,6 +28,8 @@ const App = () => {
 
     return (
         <>
+
+        
 
             <Home />
         
