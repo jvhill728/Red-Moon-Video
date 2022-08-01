@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {  Route, Switch, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react';
+import Home from './Home';
+import NavBar from './NavBar';
+
 
 //Beginning App below, navbar component needed
 
@@ -24,19 +27,13 @@ const App = () => {
     }, []);
 
     return (
-        <div className="app-container">
-            <div id="header">
-                <span>
-                    <h1 className="welcomeBanner">
-                        Welcome to Red Moon Video!
-                    </h1>
-                </span>
-            <div className="nav-bar"></div>
+        <>
 
+        
 
-
-        </div> 
-        </div>   
+            <Home />
+        
+        </>
                   
     )
 };
