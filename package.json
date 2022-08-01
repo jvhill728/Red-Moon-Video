@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "server:dev": "nodemon index.js",
     "db:build": "node db/init_db.js",
-    "client:dev": "react-scripts build"
+    "client:dev": "react-scripts build",
+    "client:build": "react-scripts build",
+    "start:dev": "concurrently \"npm run client:build\" \"npm run client:dev\" \"npm run server:dev\""
   },
   "keywords": [],
   "author": "",
