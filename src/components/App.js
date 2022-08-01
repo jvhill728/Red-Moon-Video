@@ -27,10 +27,8 @@ const App = () => {
 
     return (
         <>
-        
-            <Route exact path="/">
-                <Home />
-            </Route>
+
+            <Home />
         
         </>
                   
