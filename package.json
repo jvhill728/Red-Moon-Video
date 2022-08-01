@@ -9,7 +9,7 @@
     "db:build": "node db/init_db.js",
     "client:dev": "react-scripts build",
     "client:build": "react-scripts build",
-    "start:dev": "concurrently \"npm run client:build\" \"npm run client:dev\" \"npm run server:dev\""
+    "start:dev": "react-scripts start"
   },
   "keywords": [],
   "author": "",
