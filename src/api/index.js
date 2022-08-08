@@ -19,7 +19,7 @@ export const getAllUsers = async () => {
 export const registerNewUser = async (userObject) => {
 
     console.log("UserObject", userObject)
-    const response = await fetch(`${baseUrl}/users/register`. {
+    const response = await fetch(`${baseUrl}/users/register`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
