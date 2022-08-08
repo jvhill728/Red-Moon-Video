@@ -42,3 +42,29 @@ export const registerNewUser = async (userObject) => {
 
     return json;
 }
+
+export const loginUser = async (userObject) => {
+    console.log('userObject ==>', userObject)
+    const response = await fetch(`${baseUrl}/users/login`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: userObject.username,
+            password: userObject.password
+        }),
+    });
+
+    const json = await response.json();
+    const user = json.user
+
+    if(!user) {
+        return false
+    } else {
+        localStorage.setItem('userToken', json.token);
+        localStorage.setItem('Username', user.username);
+        localStorage.setItem('userId', user.Id);
+    }
+    return user;
+}
