@@ -86,3 +86,27 @@ export const getAllMovies = async () => {
         throw error;
     }
 }
+
+export const postMovies = async (title,releaseDate,genre,tags) => {
+    const token = localStorage.getItem('UserToken');
+    let response;
+    try {
+        response = await fetch(`${baseURL}/movies`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify({
+                title: title,
+                releaseDate: releaseDate,
+                genre: genre,
+                tags: tags
+            })
+        })
+        const postedMovies = await response.json();
+        return postedMovies;
+    } catch(error) {
+        throw error;
+    }
+}
