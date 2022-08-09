@@ -1,3 +1,5 @@
+import { errorMonitor } from "events";
+
 const baseURL = '/api';
 
 export const getAllUsers = async () => {
@@ -67,4 +69,20 @@ export const loginUser = async (userObject) => {
         localStorage.setItem('userId', user.Id);
     }
     return user;
+}
+
+export const getAllMovies = async () => {
+    try {
+        let response = await fetch(`${baseURL}/movies`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const returnedMovies = await response.json()
+        return returnedMovies;
+    } catch(error){
+        console.log("Error getting all the movies")
+        throw error;
+    }
 }
