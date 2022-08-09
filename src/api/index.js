@@ -1,5 +1,3 @@
-import { errorMonitor } from "events";
-
 const baseURL = '/api';
 
 export const getAllUsers = async () => {
