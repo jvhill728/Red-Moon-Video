@@ -19,3 +19,6 @@ moviesRouter.get('/', async (req, res, next) => {
         throw error;
     }
 });
+
+
+module.exports = moviesRouter;
