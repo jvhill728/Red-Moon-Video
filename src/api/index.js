@@ -1,5 +1,3 @@
-import { errorMonitor } from "events";
-
 const baseURL = '/api';
 
 export const getAllUsers = async () => {
@@ -83,6 +81,30 @@ export const getAllMovies = async () => {
         return returnedMovies;
     } catch(error){
         console.log("Error getting all the movies")
+        throw error;
+    }
+}
+
+export const postMovies = async (title,releaseDate,genre,tags) => {
+    const token = localStorage.getItem('UserToken');
+    let response;
+    try {
+        response = await fetch(`${baseURL}/movies`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify({
+                title: title,
+                releaseDate: releaseDate,
+                genre: genre,
+                tags: tags
+            })
+        })
+        const postedMovies = await response.json();
+        return postedMovies;
+    } catch(error) {
         throw error;
     }
 }
