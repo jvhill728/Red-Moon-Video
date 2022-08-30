@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavBar = (props) => {
-    const { isLoggedIn, loggedInUsername } = props;
+const NavBar = () => {
 
     return (
         <div id="navBar">

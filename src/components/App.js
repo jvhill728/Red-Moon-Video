@@ -30,7 +30,7 @@ const App = () => {
         <>
 
         
-
+            <NavBar />
             <Home />
         
         </>
