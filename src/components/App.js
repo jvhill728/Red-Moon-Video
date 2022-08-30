@@ -31,6 +31,7 @@ const App = () => {
 
 
         <NavBar />
+        <Home />
 
 
         
