@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react';
+import { BrowserRouter as Route, Router, Link } from 'react-router-dom';
 import Home from './Home';
 import NavBar from './NavBar';
 
@@ -27,13 +27,14 @@ const App = () => {
     }, []);
 
     return (
-        <>
+        <div className="app-container">
+
+
+        <NavBar />
+
 
         
-            <NavBar />
-            <Home />
-        
-        </>
+        </div>
                   
     )
 };
