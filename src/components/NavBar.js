@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavBar = (props) => {
-    const { isLoggedIn, loggedInUsername } = props;
+const NavBar = () => {
 
     return (
         <div id="navBar">
@@ -11,19 +10,19 @@ const NavBar = (props) => {
             </div>
             <span className="navText">
                 <button>
-                    <Link to="/"> Home </Link>
+                    <Link to="/">Home</Link>
                 </button>
                 <button>
-                    <Link to="/register"> Register </Link>
+                    <Link to="/register">Register</Link>
                 </button>
                 <button>
-                    <Link to="/login"> Login </Link>
+                    <Link to="/login">Login</Link>
                 </button>
                 <button>
-                    <Link to="/videoclerk"> Video Clerk </Link>
+                    <Link to="/videoclerk">Video Clerk</Link>
                 </button>
                 <button>
-                    <Link to="/library"> Video Library </Link>
+                    <Link to="/library">Video Library</Link>
                 </button>
             </span>
 
